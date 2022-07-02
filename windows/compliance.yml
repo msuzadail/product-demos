@@ -8,4 +8,4 @@
 
     - name: Run Compliance Profile
       include_role:
-        name: "ansible-lockdown.Windows-2019-STIG"
+        name: "Windows-2019-STIG"
