@@ -18,11 +18,10 @@
   - name: Unzip SCC Windows Bundle
     community.windows.win_unzip:
       src: C:\Temp\scc-5.5_Windows_bundle.zip
-      dest: C:\Temp\scc_Windows.zip
       
   - name: Unzip exe to SCC dir
     community.windows.win_unzip:
-      src: C:\Temp\scc_Windows.zip
+      src: C:\Temp\scc-5.5_Windows_bundle\scc-5.5_Windows\scc-5.5_Windows.zip
       dest: C:\SCC
       creates: C:\SCC
 
@@ -30,7 +29,7 @@
   - name: Run SCAP Scan
     ansible.windows.win_command: cscc.exe --help config
     args:
-      chdir: C:\SCC
+      chdir: C:\SCC\scc_5.5
 
     register: scc_output
 
