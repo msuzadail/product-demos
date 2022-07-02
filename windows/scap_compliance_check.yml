@@ -18,6 +18,7 @@
   - name: Unzip SCC Windows Bundle
     community.windows.win_unzip:
       src: C:\Temp\scc-5.5_Windows_bundle.zip
+      dest: C:\Temp
       
   - name: Unzip exe to SCC dir
     community.windows.win_unzip:
