@@ -1,0 +1,14 @@
+---
+- hosts: "{{ HOSTS }}"
+  become: true
+  vars:
+    compliance_profile: undef
+
+  tasks:
+    - name: Check OS Type
+      assert:
+        that: "ansible_os_family == 'Windows'"
+
+    - name: Run Compliance Profile
+      include_role:
+        name: "ansible-lockdown.Windows-2019-STIG"
