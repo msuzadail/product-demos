@@ -15,11 +15,17 @@
       force: no
       validate_certs: no
    
-  - name: Unzip a bz2 (BZip) file
+  - name: Unzip SCC Windows Bundle
     community.windows.win_unzip:
       src: C:\Temp\scc-5.5_Windows_bundle.zip
+      dest: C:\Temp\scc_Windows.zip
+      
+  - name: Unzip exe to SCC dir
+    community.windows.win_unzip:
+      src: C:\Temp\scc_Windows.zip
       dest: C:\SCC
       creates: C:\SCC
+
   
   - name: Run SCAP Scan
     ansible.windows.win_command: cscc.exe --help config
