@@ -1,0 +1,27 @@
+---
+- name: SCAP Compliance Checker
+  hosts: "{{ HOSTS | default('windows') }}"
+  gather_facts: false
+  tasks:
+  - name: Download SCC from DISA
+    ansible.windows.win_get_url:
+      url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/scc-5.5_Windows_bundle.zip
+      dest: C:\Temp\scc-5.5_Windows_bundle.zip
+      force: no
+      validate_certs: no
+   
+  - name: Unzip a bz2 (BZip) file
+    community.windows.win_unzip:
+      src: C:\Temp\scc-5.5_Windows_bundle.zip
+      dest: C:\SCC
+      creates: C:\SCC
+  
+  - name: Run SCAP Scan
+    ansible.windows.win_command: cscc.exe --help config
+    args:
+      chdir: C:\SCC
+
+    register: scc_output
+
+  - debug:
+      var: scc_output
