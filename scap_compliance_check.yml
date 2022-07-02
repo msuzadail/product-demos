@@ -2,8 +2,6 @@
 - name: SCAP Compliance Checker
   hosts: "{{ HOSTS | default('windows') }}"
   gather_facts: false
-  vars:
-    remote_dest: "C:\\sample_script.ps1"
   tasks:
   - name: Download SCC from DISA
     ansible.windows.win_get_url:
