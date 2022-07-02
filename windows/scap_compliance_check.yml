@@ -22,7 +22,7 @@
       
   - name: Unzip exe to SCC dir
     community.windows.win_unzip:
-      src: C:\Temp\scc-5.5_Windows_bundle\scc-5.5_Windows\scc-5.5_Windows.zip
+      src: C:\Temp\scc-5.5_Windows\scc-5.5_Windows.zip
       dest: C:\SCC
       creates: C:\SCC
 
