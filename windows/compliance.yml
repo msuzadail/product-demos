@@ -1,8 +1,5 @@
 ---
 - hosts: "{{ HOSTS }}"
-  become: true
-  vars:
-    compliance_profile: undef
 
   tasks:
     - name: Check OS Type
