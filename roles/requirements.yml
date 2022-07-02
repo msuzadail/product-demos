@@ -4,6 +4,5 @@ roles:
     version: 0.1.61
   - name: redhatofficial.rhel8_stig
     version: 0.1.60
-  - name: https://github.com/ansible-lockdown/Windows-2019-STIG.git
-    type: git
+  - src: https://github.com/ansible-lockdown/Windows-2019-STIG.git
     version: devel
