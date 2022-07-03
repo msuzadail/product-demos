@@ -5,4 +5,5 @@
     - name: Fetch file 
       ansible.builtin.fetch:
         src: C:\Users\ec2-user\SCC\Config\5.5_options.xml
-        dest: /tmp/scc_config/
+        dest: /tmp/
+        flat: yes
