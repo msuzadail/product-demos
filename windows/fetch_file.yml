@@ -1,0 +1,9 @@
+---
+- hosts: {{ HOSTS }}
+  name: Get file from server
+  tasks:
+    -name: 
+     ansible.builtin.fetch:
+       src: C:\SSC\CONFIG\5.5_options.yml
+       dest: /tmp/
+       flat: yes
