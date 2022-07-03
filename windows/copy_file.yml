@@ -1,8 +1,8 @@
 ---
 - name: copy file to linux host
-  hosts: all
+  hosts: node1
   tasks:
     - name: copy file 
       ansible.builtin.copy:
-        src: /tmp/scc_.5_options.xml
+        src: /tmp/5.5_options.xml
         dest: /tmp
