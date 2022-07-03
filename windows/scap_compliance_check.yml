@@ -28,7 +28,7 @@
 
   
   - name: Run SCAP Scan
-    ansible.windows.win_command: cscc.exe --help config
+    ansible.windows.win_command: cscc.exe
     args:
       chdir: C:\SCC\scc_5.5
 
