@@ -4,6 +4,6 @@
   tasks:
     - name: Fetch file 
       ansible.builtin.fetch:
-        src: C:\SSC\CONFIG\5.5_options.yml
+        src: C:\Users\ec2-user\SCC\Config\5.5_options.xml
         dest: /tmp/
         flat: yes
