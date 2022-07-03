@@ -1,8 +1,8 @@
 ---
 - name: Get File from Server
-  hosts: {{ HOSTS | default('windows') }}
+  hosts: windows-stigtest
   tasks:
-    - name: 
+    - name: Fetch file 
       ansible.builtin.fetch:
         src: C:\SSC\CONFIG\5.5_options.yml
         dest: /tmp/
