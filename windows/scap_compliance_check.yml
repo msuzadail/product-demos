@@ -29,7 +29,7 @@
   - name: Copy the options.xml config file to the SCC dir
     ansible.windows.win_copy:
       src: ./files/options.xml
-      dest: C:\SCC
+      dest: C:\SCC\scc_5.5\
       force: yes
       backup: yes
 
