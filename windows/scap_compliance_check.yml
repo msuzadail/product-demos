@@ -1,6 +1,6 @@
 ---
 - name: SCAP Compliance Checker
-  hosts: "{{ HOSTS | default('windows') }}"
+  hosts: "{{ HOSTS | default('os_windows') }}"
   gather_facts: false
   tasks:
   - name: Create TEMP directory
