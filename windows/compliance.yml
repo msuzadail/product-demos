@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ HOSTS }}"
+- hosts: "{{ HOSTS | default('os_windows') }}"
 
   tasks:
     - name: Check OS Type
