@@ -26,7 +26,13 @@
       dest: C:\SCC
       creates: C:\SCC
 
-  
+  - name: Copy the options.xml config file to the SCC dir
+    ansible.windows.win_copy:
+      src: ./files/options.xml
+      dest: C:\SCC
+      force: yes
+      backup: yes
+
   - name: Run SCAP Scan
     ansible.windows.win_command: cscc.exe
     args:
