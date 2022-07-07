@@ -64,7 +64,7 @@
       <suppress_warnings>0</suppress_warnings>
       <!-- *********** Output Options ***************** -->
       <sharedOptions>0</sharedOptions>
-      <userResultsDirectory>C:\SCC</userResultsDirectory>
+      <userResultsDirectory>Z:\XML</userResultsDirectory>
       <userResultsDirectoryValue>2</userResultsDirectoryValue>
       <userConfigDirectory>C:\Users\ec2-user\SCC\Config</userConfigDirectory>
       <userConfigDirectoryValue>0</userConfigDirectoryValue>
