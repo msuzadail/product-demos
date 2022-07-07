@@ -6,3 +6,5 @@ roles:
     version: 0.1.60
   - src: https://github.com/ansible-lockdown/Windows-2019-STIG.git
     version: devel
+  - name: community.windows
+    version: 1.10.0
