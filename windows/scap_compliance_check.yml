@@ -34,7 +34,7 @@
       backup: yes
 
   - name: Run SCAP Scan
-    ansible.windows.win_command: cscc.exe
+    ansible.windows.win_command: cscc.exe -o options.xml
     args:
       chdir: C:\SCC\scc_5.5
 
