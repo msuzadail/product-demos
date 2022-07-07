@@ -1,0 +1,35 @@
+---
+- name: Install STIG Viewer
+  hosts: "{{ HOSTS | default('os_windows') }}"
+  
+  tasks:
+
+    - name: Download STIG Viewer from DISA
+      ansible.windows.win_get_url:
+        url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_STIGViewer_2-16_Win64.msi.zip
+        dest: C:\Temp\
+        force: no
+        validate_certs: no
+
+    - name: Download SCAP Benchmarks
+      ansible.windows.win_get_url:
+        url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_MS_Windows_Server_2019_V2R2_STIG_SCAP_1-2_Benchmark.zip
+        dest: C:\Temp\
+        force: no
+        validate_certs: no
+
+    - name: Unzip SCC Windows Bundle
+      community.windows.win_unzip:
+        src: C:\Temp\U_STIGViewer_2-16_Win64.msi.zip
+        dest: C:\Temp
+
+    - name: Unzip SCC Windows Bundle
+      community.windows.win_unzip:
+        src: C:\Temp\U_STIGViewer_2-16_Win64.msi.zip
+        dest: C:\Temp    
+    
+    - name: Install STIG Viewer MSI file
+      ansible.windows.win_package:
+        path: C:\Temp\U_STIGViewer_2-16_Win64.msi
+        state: present
+
