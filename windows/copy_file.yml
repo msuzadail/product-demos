@@ -1,8 +1,9 @@
 ---
 - name: copy file to linux host
-  hosts: node1
+  hosts: "{{ HOSTS | default('os_windows') }}"
   tasks:
-    - name: copy file 
-      ansible.builtin.copy:
-        src: /tmp/5.5_options.xml
-        dest: /tmp
+    - name: Copy XCCDF Files to Fileshare
+      ansible.windows.win_copy:
+        src: C:\SCC\Sessions\XML
+        dest: Z:\XML\
+        remote_src: yes
