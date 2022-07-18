@@ -1,0 +1,13 @@
+---
+- name: Modify CKL Files
+  hosts: "{{ HOSTS | default('os_windows') }}"
+  
+  tasks:
+
+    - name: Replace Comments with 
+      ansible.builtin.replace:
+        path: C:\Temp\Windows2.ckl
+#        after: '<VirtualHost [*]>'
+#        before: '</VirtualHost>'
+        regexp: '<COMMENT></COMMENT>'
+        replace: '<COMMENT>Add some Text in here</COMMENT>'
