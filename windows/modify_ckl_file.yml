@@ -1,11 +1,12 @@
 ---
 - name: Modify CKL Files
   hosts: "{{ HOSTS | default('os_windows') }}"
-  
-  - community.windows.win_lineinfile:
-      path: C:\Temp\Windows2.ckl
-      backrefs: yes
-      regex: '<COMMENT></COMMENT>'
-      line: '<COMMENT>Add a comment line here</COMMENT>'
+  tasks:
+    - name: Change Comment in CKL File
+      community.windows.win_lineinfile:
+        path: C:\Temp\Windows2.ckl
+        backrefs: yes
+        regex: '<COMMENT></COMMENT>'
+        line: '<COMMENT>Add a comment line here</COMMENT>'
 
  
