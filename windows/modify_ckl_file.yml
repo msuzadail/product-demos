@@ -3,11 +3,10 @@
   hosts: "{{ HOSTS | default('os_windows') }}"
   
   tasks:
+  community.windows.win_lineinfile:
+    path: C:\Temp\Windows2.ckl
+    backrefs: yes
+    regex: '<COMMENT></COMMENT>'
+    line: '<COMMENT>Add a comment line here</COMMENT>'
 
-    - name: Replace Comments with 
-      ansible.builtin.replace:
-        path: C:\Temp\Windows2.ckl
-#        after: '<VirtualHost [*]>'
-#        before: '</VirtualHost>'
-        regexp: '<COMMENT></COMMENT>'
-        replace: '<COMMENT>Add some Text in here</COMMENT>'
+ 
