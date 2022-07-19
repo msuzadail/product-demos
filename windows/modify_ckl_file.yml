@@ -3,6 +3,7 @@
   hosts: "{{ HOSTS | default('os_windows') }}"
   tasks:
     - name: Change Comment in CKL File
-      win_shell: |
-    (Get-Content "{{file_name}}").replace('<COMMENTS></COMMENTS>','<COMMENTS>Adding POAM Comment here</COMMENTS>') | Set-Content -Path "{{file_name}}" -Encoding Ascii
-
+      community.windows.win_lineinfile:
+        path: C:\Temp\Windows2.ckl
+        regex: '</COMMENTS>'
+        line: 'Add a comment line here</COMMENTS>'
