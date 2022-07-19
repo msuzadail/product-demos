@@ -4,6 +4,7 @@
   tasks:
     - name: Change Comment in CKL File
       community.windows.win_lineinfile:
-        path: C:\Temp\Windows2.ckl
-        regex: '</COMMENTS>'
-        line: 'Add a comment line here</COMMENTS>'
+        path: {{ file_name }}
+        regex: '<COMMENTS></COMMENTS>'
+        line: '<COMMENTS>Add a comment line here</COMMENTS>'
+      with_sequence: start=1 end=200
