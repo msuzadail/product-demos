@@ -6,7 +6,5 @@
       community.windows.win_lineinfile:
         path: C:\Temp\Windows2.ckl
         backrefs: yes
-        regex: '<COMMENTS></COMMENTS>'
-        line: '<COMMENTS>Add a comment line here</COMMENTS>'
-
- 
+        regex: '</COMMENTS>'
+        line: 'Add a comment line here</COMMENTS>'
