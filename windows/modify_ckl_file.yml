@@ -6,6 +6,6 @@
       community.windows.win_lineinfile:
         path: "{{ file_name }}"
         regex: '<COMMENTS></COMMENTS>'
-        line: '<COMMENTS>"{{ comment }}"</COMMENTS>'
+        line: '<COMMENTS>{{ comment }}</COMMENTS>'
         backrefs: yes
       with_sequence: start=1 end=205
