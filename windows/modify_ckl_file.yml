@@ -6,5 +6,5 @@
       community.windows.win_lineinfile:
         path: "{{ file_name }}"
         regex: '<COMMENTS></COMMENTS>'
-        line: '<COMMENTS>Add a comment line here</COMMENTS>'
-      with_sequence: start=1 end=200
+        line: '<COMMENTS>"{{ comment }}"</COMMENTS>'
+      with_sequence: start=1 end=205
