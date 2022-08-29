@@ -19,6 +19,7 @@
     ansible.builtin.unarchive:
       src: /tmp/{{ scc_zipfile }}
       dest: /tmp
+      remote_src: yes
       
   - name: Install SCC local rpm file
     ansible.builtin.yum:
