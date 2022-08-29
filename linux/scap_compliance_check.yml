@@ -2,36 +2,31 @@
 - name: SCAP Compliance Checker
   hosts: "{{ HOSTS | default('linux') }}"
   gather_facts: false
+  vars:
+    scc_zipfile: scc-5.5_rhel8_oracle-linux8_x86_64_bundle.zip
+    scc_version: scc-5.5_rhel8_x86_64
   tasks:
-  - name: Create TEMP directory
-    ansible.windows.win_file:
-      path: C:\Temp\
-      state: directory
-      
+        
   - name: Download SCC from DISA
-    ansible.windows.win_get_url:
-      url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/scc-5.5_rhel8_oracle-linux8_x86_64_bundle.zip
+    ansible.builtin.get_url:
+      url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/{{ scc_zipfile }}
       dest: /tmp
       force: no
       validate_certs: no
    
   - name: Unzip SCC Linux Bundle
-    community.windows.win_unzip:
-      src: /tmp/scc-5.5_rhel8_oracle-linux8_x86_64_bundle.zip
+    ansible.builtin.unarchive:
+      src: /tmp/{{ scc_zipfile }}
       dest: /tmp
       
-  - name: Unzip exe to SCC dir
-    community.windows.win_unzip:
-      src: C:\Temp\scc-5.5_Windows\scc-5.5_Windows.zip
-      dest: /SCC
-      creates: /SCC
-
+  - name: Install SCC local rpm file
+    ansible.builtin.yum:
+    name: /tmp/{{ scc_version }}/{{ scc_version }}.rpm
+    state: present
   
   - name: Run SCAP Scan
-    command: 
-    args:
-      chdir: C:\SCC\scc_5.5
-
+    ansible.builtin.command: /opt/scc/cscc
+    
     register: scc_output
 
   - debug:
