@@ -25,7 +25,7 @@
     ansible.builtin.yum:
       name: /tmp/{{ scc_version }}/scc-5.5.rhel8.x86_64.rpm
       state: present
-      sslverify: no
+      disable_gpg_check: yes
   
   - name: Run SCAP Scan
     ansible.builtin.command: /opt/scc/cscc
