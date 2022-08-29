@@ -2,6 +2,7 @@
 - name: SCAP Compliance Checker
   hosts: "{{ HOSTS | default('linux') }}"
   gather_facts: false
+  become: yes
   vars:
     scc_zipfile: scc-5.5_rhel8_oracle-linux8_x86_64_bundle.zip
     scc_version: scc-5.5_rhel8_x86_64
@@ -21,8 +22,8 @@
       
   - name: Install SCC local rpm file
     ansible.builtin.yum:
-    name: /tmp/{{ scc_version }}/{{ scc_version }}.rpm
-    state: present
+      name: /tmp/{{ scc_version }}/{{ scc_version }}.rpm
+      state: present
   
   - name: Run SCAP Scan
     ansible.builtin.command: /opt/scc/cscc
