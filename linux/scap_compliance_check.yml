@@ -23,7 +23,7 @@
       
   - name: Install SCC local rpm file
     ansible.builtin.yum:
-      name: /tmp/{{ scc_version }}/{{ scc_version }}.rpm
+      name: /tmp/{{ scc_version }}/scc-5.5.rhel8.x86_64.rpm
       state: present
   
   - name: Run SCAP Scan
