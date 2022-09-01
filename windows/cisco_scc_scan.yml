@@ -1,0 +1,44 @@
+---
+- name: CISCO SCAP Compliance Checker
+  hosts: "{{ HOSTS | default('os_windows') }}"
+  gather_facts: false
+  tasks:
+  - name: Create TEMP directory
+    ansible.windows.win_file:
+      path: C:\Temp\
+      state: directory
+      
+  - name: Download SCC from DISA
+    ansible.windows.win_get_url:
+      url: https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/scc-5.5_Windows_bundle.zip
+      dest: C:\Temp\scc-5.5_Windows_bundle.zip
+      force: no
+      validate_certs: no
+   
+  - name: Unzip SCC Windows Bundle
+    community.windows.win_unzip:
+      src: C:\Temp\scc-5.5_Windows_bundle.zip
+      dest: C:\Temp
+      
+  - name: Unzip exe to SCC dir
+    community.windows.win_unzip:
+      src: C:\Temp\scc-5.5_Windows\scc-5.5_Windows.zip
+      dest: C:\SCC
+      creates: C:\SCC
+
+  - name: Copy the hostCredentials to the SCC Config dir
+    ansible.windows.win_copy:
+      src: ./files/hostCredentials.db
+      dest: C:\ec2-user\SCC\Config\
+      force: yes
+      backup: yes
+
+  - name: Run SCAP Scan
+    ansible.windows.win_command: cscc.exe --installCredentialDB C:\ec2-user\SCC\Config\hostCredentials.db
+    args:
+      chdir: C:\SCC\scc_5.5
+
+    register: scc_output
+
+  - debug:
+      var: scc_output
