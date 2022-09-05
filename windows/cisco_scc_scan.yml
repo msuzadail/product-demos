@@ -46,7 +46,7 @@
       chdir: C:\SCC\scc_5.5
       command: cscc.exe --ssh cisco
       responses:
-        Enter SSH Host Credential Master Password: "ASDF1234!@#$qwer"
+        (?i)Enter SSH Host Credential Master Password: 'ASDF1234!@#$qwer'
 
     register: scc_output
 
