@@ -26,17 +26,24 @@
       dest: C:\SCC
       creates: C:\SCC
 
-  - name: Copy the hostCredentials to the SCC Config dir
-    ansible.windows.win_copy:
-      src: ./files/hostCredentials.db
-      dest: C:\ec2-user\SCC\Config\
-      force: yes
-      backup: yes
+#  - name: Copy the hostCredentials to the SCC Config dir
+#    ansible.windows.win_copy:
+#      src: ./files/hostCredentials.db
+#      dest: C:\ec2-user\SCC\Config\
+#      force: yes
+#      backup: yes
 
-  - name: Run SCAP Scan
+  - name: Install Credential DB into SCC
     ansible.windows.win_command: cscc.exe --installCredentialDB C:\ec2-user\SCC\Config\hostCredentials.db
     args:
       chdir: C:\SCC\scc_5.5
+  
+  - name: Run SCAP Scan
+    ansible.builtin.expect:
+    chdir: C:\SCC\scc_5.5
+    command: cscc.exe --ssh cisco
+    responses:
+      Enter SSH Host Credential Master Password: "ASDF1234!@#$qwer"
 
     register: scc_output
 
