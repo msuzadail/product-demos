@@ -3,7 +3,7 @@
   hosts: "{{ HOSTS | default('os_windows') }}"
   gather_facts: false
   vars:
-    ansible_python_interpreter: "C:\Python\python"
+    ansible_python_interpreter: 'C:\Python\python'
 
   tasks:
   - name: Create TEMP directory
