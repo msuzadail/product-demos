@@ -2,6 +2,9 @@
 - name: CISCO SCAP Compliance Checker
   hosts: "{{ HOSTS | default('os_windows') }}"
   gather_facts: false
+  vars:
+    ansible_python_interpreter: "C:\Python\python"
+
   tasks:
   - name: Create TEMP directory
     ansible.windows.win_file:
