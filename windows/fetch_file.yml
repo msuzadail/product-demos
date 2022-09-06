@@ -22,7 +22,7 @@
       
     - name: copy files to tmp
       ansible.builtin.copy:
-        src: "{{ item.path }}"
+        remote_src: "{{ item.path }}"
         dest: /checklists
       with_items: "{{files.files}}"
       delegate_to: backup-server
