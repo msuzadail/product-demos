@@ -16,7 +16,7 @@
    
     - name: Fetch files 
       ansible.builtin.fetch:
-        src: {{ item.path }}
+        src: "{{ item.path }}"
         dest: /tmp/
       with_items: "{{files.files}}"
       
