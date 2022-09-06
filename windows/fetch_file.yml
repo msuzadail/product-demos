@@ -5,7 +5,7 @@
     
   tasks:
     - name: find checklists
-      find:
+      ansible.windows.win_find:
         paths: C:\checklists\
         file_type: file
       register: files
@@ -21,7 +21,7 @@
       with_items: "{{files.files}}"
       
     - name: copy files to tmp
-      copy:
+      ansible.builtin.copy:
         src: /tmp/"{{item.path}}"
         dest: /checklists
       with_items: "{{files.files}}"
