@@ -21,12 +21,12 @@
     #  with_items: "{{files.files}}"
       
     - name: copy ckls to ansible server
-      become: true
-      become_user: mike
-      ansible_become_password: redhat
       ansible.builtin.copy:
         remote_src: "{{ item.path }}"
         dest: /checklists
+      become: true
+      become_user: mike
+      ansible_become_password: redhat
       with_items: "{{files.files}}"
       delegate_to: backup-server
       
