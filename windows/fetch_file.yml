@@ -23,8 +23,8 @@
       
     - name: copy ckls to ansible server
       ansible.builtin.copy:
-        src: "/tmp/{{ item.path | basename }}"
-        dest: /checklists
+        src: "/tmp/{{ item.filename }}"
+        dest: /home/ec2-user/checklists/
       with_items: "{{files.files}}"
       delegate_to: backup-server
       
