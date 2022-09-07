@@ -2,11 +2,14 @@
 - name: Get File from Server
   hosts: os_windows
   vars:
+    device_type: windows
+    src_dir: C:\checklists\
+    copy_dir: /home/ec2-user/checklists
     
   tasks:
     - name: find checklists
       ansible.windows.win_find:
-        paths: C:\checklists\
+        paths: {{ src_dir }}
         file_type: file
       register: files
     
@@ -21,10 +24,10 @@
         flat: yes
       with_items: "{{files.files}}"
       
-    - name: copy ckls to ansible server
+    - name: copy ckls to {{ copy_dir }}
       ansible.builtin.copy:
         src: "/tmp/{{ item.filename }}"
-        dest: /home/ec2-user/checklists/
+        dest: "{{ copy_dir }}/{{ device_type }}"
       with_items: "{{files.files}}"
       delegate_to: backup-server
       
