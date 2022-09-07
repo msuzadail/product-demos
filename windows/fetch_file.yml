@@ -9,7 +9,7 @@
   tasks:
     - name: find checklists
       ansible.windows.win_find:
-        paths: {{ src_dir }}
+        paths: "{{ src_dir }}"
         file_type: file
       register: files
     
