@@ -22,8 +22,9 @@
       
     - name: copy ckls to ansible server
       ansible.builtin.copy:
-        remote_src: "{{ item.path }}"
+        src: "{{ item.path }}"
         dest: /checklists
+        remote_src: yes
       with_items: "{{files.files}}"
       delegate_to: backup-server
       
