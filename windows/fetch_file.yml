@@ -20,11 +20,14 @@
     #    dest: /tmp/
     #  with_items: "{{files.files}}"
       
-    - name: copy files to tmp
+    - name: copy ckls to ansible server
+      become: true
+      become_user: mike
+      ansible_become_password: redhat
       ansible.builtin.copy:
         remote_src: "{{ item.path }}"
         dest: /checklists
       with_items: "{{files.files}}"
-      delegate_to: linux1
+      delegate_to: backup-server
       
   
