@@ -14,17 +14,16 @@
       debug: 
         var: files
    
-    #- name: Fetch files 
-    #  ansible.builtin.fetch:
-    #    src: "{{ item.path }}"
-    #    dest: /tmp/
-    #  with_items: "{{files.files}}"
+    - name: Fetch files 
+      ansible.builtin.fetch:
+        src: "{{ item.path }}"
+        dest: /tmp/
+      with_items: "{{files.files}}"
       
     - name: copy ckls to ansible server
       ansible.builtin.copy:
-        src: "{{ item.path }}"
+        src: "/tmp/{{ item.path | basename }}"
         dest: /checklists
-        remote_src: yes
       with_items: "{{files.files}}"
       delegate_to: backup-server
       
