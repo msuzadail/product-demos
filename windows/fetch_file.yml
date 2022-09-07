@@ -18,6 +18,7 @@
       ansible.builtin.fetch:
         src: "{{ item.path }}"
         dest: /tmp/
+        flat: yes
       with_items: "{{files.files}}"
       
     - name: copy ckls to ansible server
